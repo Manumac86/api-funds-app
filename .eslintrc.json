@@ -41,6 +41,8 @@
     ],
     "no-param-reassign": [
         "off"
-    ]
+    ],
+    "consistent-return": "off",
+    "no-shadow": "off"
   }
 }

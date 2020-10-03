@@ -1,8 +1,11 @@
 const express = require('express');
 const fundsApiRouter = require('./routes/api/funds');
+const authApiRouter = require('./routes/api/auth');
+
 const {
   logErrors,
-  errorHandler,
+  clientErrorHandler,
+  errorHandler
 } = require('./utils/middlewares/errorHandlers');
 
 /**
@@ -24,11 +27,19 @@ app.set('trust proxy', 1);
  * Use the foundsApiRouter to get the funds routes.
  */
 app.use('/api/funds', fundsApiRouter);
+/**
+ * Use the foundsApiRouter to get the funds routes.
+ */
+app.use('/api/auth', authApiRouter);
 
 /**
  * Use the `logErrors` error handler.
  */
 app.use(logErrors);
+/**
+ * Use the `clientErrorHandler` error handler.
+ */
+app.use(clientErrorHandler);
 /**
  * Use the `errorHandler` error handler.
  */
