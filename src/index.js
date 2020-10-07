@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 const fundsApiRouter = require('./routes/api/funds');
 const authApiRouter = require('./routes/api/auth');
@@ -10,6 +11,9 @@ const {
   errorHandler
 } = require('./utils/middlewares/errorHandlers');
 
+/**
+ * Config CORS.
+ */
 const corsOptions = config.dev ? {} : { origin: 'https://front-funds-app.web.app' };
 
 /**
@@ -17,7 +21,16 @@ const corsOptions = config.dev ? {} : { origin: 'https://front-funds-app.web.app
  */
 const app = express();
 
+/**
+ * Use Helmet to securize requests.
+ */
+app.use(helmet());
+
+/**
+ * Use CORS to avoid request from undesired origins.
+ */
 app.use(cors(corsOptions));
+
 /**
  * Parse requests of content-type - application/json
  */
