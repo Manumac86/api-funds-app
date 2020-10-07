@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const fundsApiRouter = require('./routes/api/funds');
 const authApiRouter = require('./routes/api/auth');
 
@@ -8,11 +9,14 @@ const {
   errorHandler
 } = require('./utils/middlewares/errorHandlers');
 
+const corsOptions = { origin: 'https://front-funds-app.vercel.app/' };
+
 /**
  * Initialize Express App.
  */
 const app = express();
 
+app.use(cors(corsOptions));
 /**
  * Parse requests of content-type - application/json
  */

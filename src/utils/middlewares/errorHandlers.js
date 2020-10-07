@@ -53,7 +53,7 @@ function errorHandler(err, req, res, next) {
   }
 
   // Add status and error message to the response.
-  res.status(err.status || 500).json({ Error: err.message });
+  res.status(err.status || 500).json({ error: err });
 }
 
 module.exports = {
