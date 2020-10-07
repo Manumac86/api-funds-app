@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fundsApiRouter = require('./routes/api/funds');
 const authApiRouter = require('./routes/api/auth');
+const { config } = require('../config');
 
 const {
   logErrors,
@@ -9,7 +10,7 @@ const {
   errorHandler
 } = require('./utils/middlewares/errorHandlers');
 
-const corsOptions = { origin: 'https://front-funds-app.web.app' };
+const corsOptions = config.dev ? {} : { origin: 'https://front-funds-app.web.app' };
 
 /**
  * Initialize Express App.
@@ -31,10 +32,24 @@ app.set('trust proxy', 1);
  * Use the foundsApiRouter to get the funds routes.
  */
 app.use('/api/funds', fundsApiRouter);
+
 /**
  * Use the foundsApiRouter to get the funds routes.
  */
 app.use('/api/auth', authApiRouter);
+
+/**
+ * Route to validate if service is up.
+ */
+app.get('/api/service/ready',
+  async (req, res) => {
+    res.status(200).json({
+      data: {
+        service: 'READY'
+      },
+      message: 'OK'
+    });
+  });
 
 /**
  * Use the `logErrors` error handler.
