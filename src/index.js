@@ -9,7 +9,7 @@ const {
   errorHandler
 } = require('./utils/middlewares/errorHandlers');
 
-const corsOptions = { origin: 'https://front-funds-app.web.app/' };
+const corsOptions = { origin: 'https://front-funds-app.web.app' };
 
 /**
  * Initialize Express App.
