@@ -57,6 +57,6 @@ app.use(errorHandler);
  * @param {string}   host      The host address to listen to.
  * @param {callback} callback  The callback to execute when success.
  */
-const server = app.listen(8000, 'localhost', () => {
+const server = app.listen((process.env.PORT || 8000), 'localhost', () => {
   console.log(`Listening http://${server.address().address}:${server.address().port}`);
 });
